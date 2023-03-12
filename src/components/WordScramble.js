@@ -9,14 +9,24 @@ const WORDS =[
     "State",
     "Props",
     "Components",
+    "TailwindCSS",
+    "vercel",
+    "Redux",
+    "website",
+    "vscode",
+    "git",
+    "github",
+    "code"
 ]
 
 function WordScramble() {
+    
     const [correctWord,setCorrectWord]=useState('');
     const [scrambledWord,setScramledWord]=useState('');
     const [inputValue,setInputValue] = useState('');
     const [isPlayOn,setIsPlayOn] = useState(false);
     const [message,setMessage] = useState('');
+    const [className,setClassName] = useState('');
 
 
     const selectWord = () => {
@@ -32,12 +42,21 @@ function WordScramble() {
 
      if(inputValue !== ""){
         if(correctWord === inputValue){
-            setMessage('Correct Answer');
+            setMessage('Correct Answer !');
+            setClassName('bg-green-400')  
+                
+            setInputValue('')
+            const word =selectWord()
+            setCorrectWord(word.toUpperCase())
+            setScramledWord(constructScrambledWord(word))
+
         }else{
-            setMessage('Wrong Answer');
+            setMessage('Wrong Answer !!!');
+            setClassName('bg-red-400')
         }
      }else{
-        setMessage('Write a Word');
+        setMessage('Write a Word !!');
+        setClassName('bg-yellow-400')
     }
     }
     const constructScrambledWord = (word) => {
@@ -66,16 +85,19 @@ function WordScramble() {
         return ()=>{
             if(clearMessage){
               clearTimeout(clearMessage);
+              
             }
         };
     },[message]);
   return (
         <form>
-    <div className='flex flex-col w-screen h-screen items-center justify-center border border-gray-700'>
-     <div className=' relative flex flex-col h-[40%] w-[70%] bg-gray-300 items-center justify-evenly '>
-        {!!message && (
-             <div className='absolute top-3 left-5 bg-black p-1 text-white flex items-center justify-center'>
-             <p className=''>{message}</p>
+    <div className='flex flex-col w-screen h-screen items-center justify-center border border-gray-700 p-0 sm:p-5'>
+     <div className=' relative flex flex-col h-[50%] w-[100%] sm:h-[40%] sm:w-[100%] bg-gray-300 items-center justify-evenly '>
+       {!!message && (
+             <div className='absolute top-20 left-10 sm:top-10 sm:left-9 p-1 text-white flex items-center justify-center'>
+            
+            <p className={` p-1 border-none outline-none ${className}`}>{message}</p>
+            
            </div>
         )}
       <h1 className='w-full bg-slate-800 text-white flex items-center mt-[-65px] h-[2rem] justify-center text-lg border uppercase tracking-widest'>Word Scramble</h1>
@@ -87,7 +109,7 @@ function WordScramble() {
              <div className='flex flex-row'>
                 {correctWord.split("").map((el,i)=>(
 
-            <span key={`${el}_${i}`} className='m-1 flex bg-gray-400 w-[30px] h-[30px] items-center text-center justify-center'>
+            <span key={`${el}_${i}`} className='m-1 flex bg-gray-400 w-[23px] h-[23px]  sm:w-[30px] sm:h-[30px] sm:m-3 items-center text-center justify-center'>
             {
                 inputValue[i]
             }
