@@ -25,7 +25,7 @@ function WordScramble() {
     }
 
     const handleInputChange = (e) => {
-      setInputValue(e.target.value)
+      setInputValue(e.target.value.toUpperCase())
     }
     const handleClick = (e) => {
         e.preventDefault();
@@ -54,7 +54,7 @@ function WordScramble() {
         setInputValue('')
         setMessage("");
         const word =selectWord()
-        setCorrectWord(word)
+        setCorrectWord(word.toUpperCase())
         setScramledWord(constructScrambledWord(word))
         
     }
@@ -73,7 +73,7 @@ function WordScramble() {
         <form>
     <div className='flex flex-col w-screen h-screen items-center justify-center border border-gray-700'>
      <div className=' relative flex flex-col h-[40%] w-[70%] bg-gray-300 items-center justify-evenly '>
-        {message && (
+        {!!message && (
              <div className='absolute top-3 left-5 bg-black p-1 text-white flex items-center justify-center'>
              <p className=''>{message}</p>
            </div>
@@ -94,7 +94,7 @@ function WordScramble() {
             </span>
                 ))}
         </div>
-        <p className="flex items-center text-lg capitalize mt-2">{scrambledWord}</p>
+        <p className="flex items-center text-lg uppercase mt-2">{scrambledWord}</p>
         </div>
           <div className='mb-10 mt-5'>
           <input className='border border-gray-800 p-1 focus:outline-none' type='text' onChange={handleInputChange} placeholder='Guess the word' value={inputValue}/>
