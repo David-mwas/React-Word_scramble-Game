@@ -93,7 +93,7 @@ function WordScramble() {
         <form>
     <div className='flex flex-col w-screen h-screen items-center justify-center border border-gray-700 p-0 sm:p-5'>
      <div className=' relative flex flex-col h-[50%] w-[100%] sm:h-[40%] sm:w-[100%] bg-gray-300 items-center justify-evenly '>
-       {!!message && (
+       {Boolean(message) && (
              <div className='absolute top-20 left-10 sm:top-10 sm:left-9 p-1 text-white flex items-center justify-center'>
             
             <p className={` p-1 border-none outline-none ${className}`}>{message}</p>
